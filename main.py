@@ -23,13 +23,13 @@ for enumeration, index in enumerate(indexes):
         metadata = json.load(file)
 
     # edit metadata
-    metadata['cam/image_array'] = str(enumeration) + '_cam-image_array_.jpg'
+    metadata['cam/image_array'] = str(enumeration+1) + '_cam-image_array_.jpg'
 
     # write metadata to dst
-    with open(os.path.join(dst_dir, 'record_' + str(enumeration)+'.json'), 'w') as file:
+    with open(os.path.join(dst_dir, 'record_' + str(enumeration+1)+'.json'), 'w') as file:
         json.dump(metadata, file)
 
     # move image file with enumerated name
     shutil.move(
         os.path.join(src_dir, str(index) + '_cam-image_array_.jpg'),
-        os.path.join(dst_dir, str(enumeration) + '_cam-image_array_.jpg'))
+        os.path.join(dst_dir, str(enumeration+1) + '_cam-image_array_.jpg'))
