@@ -6,13 +6,13 @@ import shutil
 # user settings
 src = [
     ('C:\\Users\\User\\Downloads\\our_car\\mycar\\tub_1_no_obs', [(10, 20), (30, 40)]),
-    ('C:\\Users\\User\\Downloads\\our_car\\mycar\\tub_2_obs', [(10, 20), (30, 40)])
+    ('C:\\Users\\User\\Downloads\\our_car\\mycar\\tub_2_obs', [(10, 20), (30, 40)]),
 ]
-dst_dir = 'C:\\Users\\User\\Downloads\\our_car\\mycar\\tub_1_post'
+dst = 'C:\\Users\\User\\Downloads\\our_car\\mycar\\tub_1_post'
 
 # make dst dir
-if not os.path.exists(dst_dir):
-    os.mkdir(dst_dir)
+if not os.path.exists(dst):
+    os.mkdir(dst)
 
 # make target list
 targets = []
@@ -32,13 +32,13 @@ for enumeration, (path, index) in enumerate(targets):
     metadata['cam/image_array'] = str(enumeration+1) + '_cam-image_array_.jpg'
 
     # write metadata to dst
-    with open(os.path.join(dst_dir, 'record_' + str(enumeration+1)+'.json'), 'w') as file:
+    with open(os.path.join(dst, 'record_' + str(enumeration + 1) + '.json'), 'w') as file:
         json.dump(metadata, file)
 
     # move image file with enumerated name
     shutil.copy(
         os.path.join(path, str(index) + '_cam-image_array_.jpg'),
-        os.path.join(dst_dir, str(enumeration+1) + '_cam-image_array_.jpg'))
+        os.path.join(dst, str(enumeration + 1) + '_cam-image_array_.jpg'))
 
 """
 # concat ranges
